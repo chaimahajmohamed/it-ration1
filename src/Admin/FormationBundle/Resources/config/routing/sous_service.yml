@@ -1,0 +1,24 @@
+sous_service_index:
+    path:     /
+    defaults: { _controller: "AdminFormationBundle:sous_Service:index" }
+    methods:  GET
+
+sous_service_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminFormationBundle:sous_Service:show" }
+    methods:  GET
+
+sous_service_new:
+    path:     /new-sous-service
+    defaults: { _controller: "AdminFormationBundle:sous_Service:new" }
+    methods:  [GET, POST]
+
+sous_service_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminFormationBundle:sous_Service:edit" }
+    methods:  [GET, POST]
+
+sous_service_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminFormationBundle:sous_Service:delete" }
+    methods:  DELETE

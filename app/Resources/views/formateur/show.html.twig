@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Formateur</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ formateur.id }}</td>
+            </tr>
+            <tr>
+                <th>Cinformateur</th>
+                <td>{{ formateur.cINFormateur }}</td>
+            </tr>
+            <tr>
+                <th>Nomformateur</th>
+                <td>{{ formateur.nomFormateur }}</td>
+            </tr>
+            <tr>
+                <th>Prenomformateur</th>
+                <td>{{ formateur.prenomFormateur }}</td>
+            </tr>
+            <tr>
+                <th>Emailformateur</th>
+                <td>{{ formateur.emailFormateur }}</td>
+            </tr>
+            <tr>
+                <th>Descriptionformateur</th>
+                <td>{{ formateur.descriptionFormateur }}</td>
+            </tr>
+            <tr>
+                <th>Telformateur</th>
+                <td>{{ formateur.telFormateur }}</td>
+            </tr>
+            <tr>
+                <th>Fbformateur</th>
+                <td>{{ formateur.fbFormateur }}</td>
+            </tr>
+            <tr>
+                <th>Linkformateur</th>
+                <td>{{ formateur.linkFormateur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('formateur_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('formateur_edit', { 'id': formateur.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

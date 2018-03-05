@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<title>vigenere</title>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <meta charset="utf-8">
+     <style type="text/css">
+     h2 {color:#27bec4 ;font-weight: bold; font-size:40px;
+    }  
+    .btn btn-link{
+    }
+     </style>
+     <script  type="text/javascript">
+  function verif() {
+    var x = document.forms["chiffVig"]["message"].value;
+    var y= document.forms["chiffVig"]["cle"].value;
+    if (x == "" && y=="") {
+        alert("Veuillez saisir le message et la clé !");
+        return false;
+      }
+    for (i=0;i<y.length;i++)
+      { if(y.charAt(i).toUpperCase() <65 || y.charAt(i).toUpperCase()>90)
+        {
+          alert("La clé doit être une chaîne de caractères !");
+          return false;
+        }
+        
+      }
+}
+</script>
+    
+ </head>
+<body>
+
+<div class="container">
+  <h2>Chiffre de vigenère</h2>
+  <form action="dvigenere.php" name="chiffVig" onsubmit="return verif()" method="POST">
+    <div class="form-group">
+      <label for="message">Message:</label>
+   
+      <input type="text" class="form-control" id="message"  name="message" placeholder="Entrer le message clair">
+    </div>
+    
+    <div class="form-group">
+      <label for="clé">Clé:</label>
+	  <br>
+      <input type="text" class="form-control" id="cle" name="cle" placeholder="Entrer la  clé"><br>
+	  <br>
+	  <!--<label for="decalage">Décalage:</label>
+	  <br>
+      <input type="text" class="form-control" id="decalage" name="decalage" placeholder="Entrer le  décalage"><br>-->
+     
+<br>
+    <button type="submit" class="btn btn-default">Crypter</button>
+    <!--<button class="btn btn-defaultt"><a href="decrypt_vigenere.php">Décrypter</a></button>-->
+    <button type="reset" class="btn btn-default">Supprimer</button><br><br>
+   <!-- <label for="msg2">Message crypté:</label>
+     <input type="text" class="form-control" id="msg2" name="msg2" placeholder="Message crypté">-->
+
+    </div>
+    
+    
+  </form>
+  <button type="button" class="btn btn-link"><a href="index.html">Retour</button>
+</div>
+
+
+</body> 
+</html>

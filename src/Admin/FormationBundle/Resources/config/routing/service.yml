@@ -1,0 +1,24 @@
+admin_index:
+    path:     /
+    defaults: { _controller: "AdminFormationBundle:Service:index" }
+    methods:  GET
+
+admin_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminFormationBundle:Service:show" }
+    methods:  GET
+
+admin_new:
+    path:     /new
+    defaults: { _controller: "AdminFormationBundle:Service:new" }
+    methods:  [GET, POST]
+
+admin_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminFormationBundle:Service:edit" }
+    methods:  [GET, POST]
+
+admin_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminFormationBundle:Service:delete" }
+    methods:  DELETE

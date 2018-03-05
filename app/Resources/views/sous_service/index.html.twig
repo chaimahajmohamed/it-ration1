@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sous_services list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libellesous</th>
+                <th>Descriptionsous</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sous_Service in sous_Services %}
+            <tr>
+                <td><a href="{{ path('sous_service_show', { 'id': sous_Service.id }) }}">{{ sous_Service.id }}</a></td>
+                <td>{{ sous_Service.libelleSous }}</td>
+                <td>{{ sous_Service.descriptionSous }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('sous_service_show', { 'id': sous_Service.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sous_service_edit', { 'id': sous_Service.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sous_service_new') }}">Create a new sous_Service</a>
+        </li>
+    </ul>
+{% endblock %}

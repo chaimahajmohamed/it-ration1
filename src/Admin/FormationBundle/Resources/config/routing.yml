@@ -1,0 +1,18 @@
+admin_formation_admin:
+    resource: "@AdminFormationBundle/Resources/config/routing/service.yml"
+    prefix:   /
+
+admin_formation_homepage:
+    path:     /
+    defaults: { _controller: AdminFormationBundle:Default:index }
+
+admin_formation_new:
+    path:     /new-service
+    defaults: { _controller: AdminFormationBundle:Service:new }
+
+admin_formation_sous_service:
+        resource: "@AdminFormationBundle/Resources/config/routing/sous_service.yml"
+        prefix:   /sous_service
+admin_formation_formateur:
+        resource: "@AdminFormationBundle/Resources/config/routing/formateur.yml"
+        prefix:   /formateur

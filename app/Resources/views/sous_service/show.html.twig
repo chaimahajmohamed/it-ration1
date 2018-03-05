@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sous_service</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sous_Service.id }}</td>
+            </tr>
+            <tr>
+                <th>Libellesous</th>
+                <td>{{ sous_Service.libelleSous }}</td>
+            </tr>
+            <tr>
+                <th>Descriptionsous</th>
+                <td>{{ sous_Service.descriptionSous }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sous_service_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('sous_service_edit', { 'id': sous_Service.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
