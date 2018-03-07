@@ -1,12 +1,12 @@
-{% extends 'base.html.twig'%}
-{% block body%}
- <div class="container">
-     <div class="row">
-     <div class="col-xs-12">
-{% block fos_user_content %}
-{% endblock fos_user_content %}
-     </div>
-     </div>
- </div>
+{% extends 'user/index.html.twig' %}
+{% block title %}{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                {% block fos_user_content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
-{% endblock%}

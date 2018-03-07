@@ -1,6 +1,22 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <div class="row">
+        <br><br>
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Mon Profil</h3>
+                </div>
+
+                <ul class="list-group" id="myList">
+                    <li class="list-group-item"><b>{{ 'profile.show.username'|trans }}: </b><br>{{ user.username }}</p></li>
+                    <li class="list-group-item"><b>{{ 'profile.show.email'|trans }}: </b><br>{{ user.email }}</li>
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+
 </div>

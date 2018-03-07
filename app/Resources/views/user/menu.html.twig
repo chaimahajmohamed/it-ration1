@@ -1,0 +1,25 @@
+<div id="menu">
+    <ul class="sidebar-menu" data-widget="tree">
+        <li class="active treeview">
+            <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Tableau de bord</span>
+            </a>
+        </li>
+        <li class="treeview">
+            <a href="">
+                <i class="fa fa-table"></i> <span>Modifier Profil</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-circle-o"></i> Modifier</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">
+                <i class="fa fa-calendar"></i> <span>Calendrier</span>
+            </a>
+        </li>
+    </ul>
+</div>
