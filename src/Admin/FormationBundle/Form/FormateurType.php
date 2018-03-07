@@ -22,16 +22,16 @@ class FormateurType extends AbstractType
                 ->add('fbFormateur')
                 ->add('linkFormateur')
                 ->add('file')
-                ->add('cvformateur',FileType::class, array('label' => 'CV (PDF file)'), array('data_class' => null)
-                    );
+                ->add('cvformateur',FileType::class, array('label' => 'CV (PDF file)'));
+
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Admin\FormationBundle\Entity\Formateur'
-        ));
+            'data_class' => 'Admin\FormationBundle\Entity\Formateur' ));
+
     }
 
     /**

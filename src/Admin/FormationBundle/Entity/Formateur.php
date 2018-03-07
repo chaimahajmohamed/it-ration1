@@ -31,15 +31,16 @@ class Formateur
 
     /**
      * @var string
-     *
+     *@Assert\Type("string")
      * @ORM\Column(name="nom_formateur", type="string", length=255)
      */
     private $nomFormateur;
 
     /**
      * @var string
-     *
+     *@Assert\Type("string")
      * @ORM\Column(name="prenom_formateur", type="string", length=255)
+     *
      */
     private $prenomFormateur;
 
@@ -47,12 +48,13 @@ class Formateur
      * @var string
      *
      * @ORM\Column(name="email_formateur", type="string", length=255)
+     * @Assert\Email()
      */
     private $emailFormateur;
 
     /**
      * @var string
-     *
+     *@Assert\Type("string")
      * @ORM\Column(name="description_formateur", type="string", length=255)
      */
     private $descriptionFormateur;
@@ -61,6 +63,7 @@ class Formateur
      * @var int
      *
      * @ORM\Column(name="tel_formateur", type="integer")
+     *
      */
     private $telFormateur;
 
@@ -68,6 +71,7 @@ class Formateur
      * @var string
      *
      * @ORM\Column(name="fb_formateur", type="string", length=255)
+     * @Assert\Url()
      */
     private $fbFormateur;
 
@@ -75,6 +79,7 @@ class Formateur
      * @var string
      *
      * @ORM\Column(name="link_formateur", type="string", length=255)
+     * @Assert\Url()
      */
     private $linkFormateur;
     /**
@@ -84,14 +89,15 @@ class Formateur
      */
     public $photoformateur;
     /**
+     *@Assert\NotBlank(message="S'il vous plait, joindre un fichier de format (PNG,JPEG,..).")
      * @Assert\File(maxSize="1500k")
      */
     public $file;
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(mimeTypes={ "application/pdf" })
+     * @Assert\NotBlank(message="S'il vous plait, joindre un fichier de format PDF.")
+     * @Assert\File(mimeTypes={ "PDF" })
      */
     private $cvformateur;
 

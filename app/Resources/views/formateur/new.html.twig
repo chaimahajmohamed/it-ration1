@@ -1,139 +1,228 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-<style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
-    .othertop{margin-top:10px;}
-</style>
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 ">
-            <form class="form-horizontal">
-                <fieldset>
-                    <!-- Form Name -->
-                    <legend>Ajouter Formateur</legend>
-    <div class="form-group">
-        <label class="col-md-4 control-label">Nom</label>
-        <div class="col-md-4">
-            <div class="input-group">
-                <div class="input-group-addon">
-                    <i class="fa fa-user">
-                    </i>
-                </div>
-                {{ form_widget(form.nomFormateur) }}
-           </div>
+    <link rel="stylesheet" href="{{ asset('template/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/bower_components/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/bower_components/Ionicons/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/dist/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/dist/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <div class="col-md-6">
+    <div class="box box-info">
+         <div class="box-header with-border">
+                 <h3 class="box-title text-info">Ajouter Formateur</h3>
          </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-4 control-label">Prénom</label>
-        <div class="col-md-4">
-            <div class="input-group">
-                <div class="input-group-addon">
-                  <i class="fa fa-user"></i>
-                </div>
-                {{ form_widget(form.prenomFormateur) }}
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-4 control-label">CIN</label>
-        <div class="col-md-4">
-            <div class="input-group">
-               <div class="input-group-addon">
-                   <i class=""></i>
-               </div>
-                {{ form_widget(form.cINFormateur) }}
+
+         <div class="box-body">
+            {{ form_start(form,{'attr':{'novalidate':'novalidate'}})}}
+             <!-- le champ nom-->
+               {% set class='' %}
+               {% if not form.nomFormateur.vars.valid %}
+                 {% set class="has-error" %}
+               {% endif %}
+
+             <div class="form-group {{class}} row" >
+                 <div class="col-sm-10">
+                 <label class="control-label" for="{{form.nomFormateur.vars.id}}">Nom</label>
+                 <input type="text" class="form-control" id="{{form.nomFormateur.vars.id}}" name="{{ form.nomFormateur.vars.full_name}}" value="{{ form.nomFormateur.vars.value}}" placeholder="Entrer le nom" required>
+
+                {% do form.nomFormateur.setRendered %}
+                {% if not form.nomFormateur.vars.valid %}
+                  {% for error in form.nomFormateur.vars.errors %}
+                    <span class="help-block">{{ error.message }}</span>
+                  {% endfor %}
+                {% endif%}
                 </div>
              </div>
+             <!-- le champ prénom-->
+             {% set class='' %}
+             {% if not form.prenomFormateur.vars.valid %}
+                 {% set class="has-error" %}
+             {% endif %}
+             <div class="form-group {{class}} row" >
+                 <div class="col-sm-10">
+                 <label class="control-label" for="{{form.prenomFormateur.vars.id}}">Prénom</label>
+
+                     <input type="text" class="form-control" id="{{form.prenomFormateur.vars.id}}" name="{{ form.prenomFormateur.vars.full_name}}" value="{{ form.prenomFormateur.vars.value}}" placeholder="Entrer le prénom">
+
+                 {% do form.prenomFormateur.setRendered %}
+                 {% if not form.prenomFormateur.vars.valid %}
+                     {% for error in form.prenomFormateur.vars.errors %}
+                         <span class="help-block">{{ error.message }}</span>
+                     {% endfor %}
+                 {% endif %}
+             </div>
+             </div>
+
+             <!-- le champ CIN-->
+             {% set class='' %}
+             {% if not form.cINFormateur.vars.valid %}
+                 {% set class="has-error" %}
+             {% endif %}
+             <div class="form-group {{class}} row" >
+                 <div class="col-sm-10">
+                 <label class=" control-label" for="{{form.cINFormateur.vars.id}}">CIN</label>
+
+                     <input type="text" class="form-control" id="{{form.cINFormateur.vars.id}}" name="{{ form.cINFormateur.vars.full_name}}" value="{{ form.cINFormateur.vars.value}}" placeholder="Entrer le CIN">
+
+                 {% do form.cINFormateur.setRendered %}
+                 {% if not form.cINFormateur.vars.valid %}
+                     {% for error in form.cINFormateur.vars.errors %}
+                         <span class="help-block">{{ error.message }}</span>
+                     {% endfor %}
+                 {% endif %}
+             </div>
+             </div>
+             <!-- le champ Email-->
+             {% set class='' %}
+             {% if not form.emailFormateur.vars.valid %}
+                 {% set class="has-error" %}
+             {% endif %}
+             <div class="form-group {{class}} row" >
+                 <div class="col-sm-10">
+                 <label class=" control-label" for="{{form.emailFormateur.vars.id}}">Email</label>
+
+                     <input type="text" class="form-control" id="{{form.emailFormateur.vars.id}}" name="{{ form.emailFormateur.vars.full_name}}" value="{{ form.emailFormateur.vars.value}}" placeholder="p-email@email.com">
+
+                 {% do form.emailFormateur.setRendered %}
+                 {% if not form.emailFormateur.vars.valid %}
+                     {% for error in form.emailFormateur.vars.errors %}
+                         <span class="help-block">{{ error.message }}</span>
+                     {% endfor %}
+                 {% endif %}
+             </div>
+             </div>
+             <!-- le champ Domaine d'expertise-->
+             {% set class='' %}
+             {% if not form.descriptionFormateur.vars.valid %}
+                 {% set class="has-error" %}
+             {% endif %}
+             <div class="form-group {{class}} row" >
+                 <div class="col-sm-10">
+                 <label class="control-label" for="{{form.descriptionFormateur.vars.id}}">Domaine d'expertise</label>
+                     <input type="text" class="form-control" id="{{form.descriptionFormateur.vars.id}}" name="{{ form.descriptionFormateur.vars.full_name}}" value="{{ form.descriptionFormateur.vars.value}}" placeholder="Entrer le domaine d'expertise">
+                 {% do form.descriptionFormateur.setRendered %}
+                 {% if not form.descriptionFormateur.vars.valid %}
+                     {% for error in form.descriptionFormateur.vars.errors %}
+                         <span class="help-block">{{ error.message }}</span>
+                     {% endfor %}
+                 {% endif %}
+             </div>
+             </div>
+             <!-- le champ téléphone-->
+             {% set class='' %}
+             {% if not form.telFormateur.vars.valid %}
+                 {% set class="has-error" %}
+             {% endif %}
+             <div class="form-group {{class}} row" >
+                 <div class="col-sm-10">
+                 <label class="control-label" for="{{form.telFormateur.vars.id}}">Téléphone</label>
+                     <input type="text" class="form-control" id="{{form.telFormateur.vars.id}}" name="{{ form.telFormateur.vars.full_name}}" value="{{ form.telFormateur.vars.value}}" placeholder="+21600000000">
+                 {% do form.telFormateur.setRendered %}
+                 {% if not form.telFormateur.vars.valid %}
+                     {% for error in form.telFormateur.vars.errors %}
+                         <span class="help-block">{{ error.message }}</span>
+                     {% endfor %}
+                 {% endif %}
+             </div>
+             </div>
+             <!-- le champ facebook-->
+             {% set class='' %}
+             {% if not form.fbFormateur.vars.valid %}
+                 {% set class="has-error" %}
+             {% endif %}
+             <div class="form-group {{class}} row" >
+                 <div class="col-sm-10">
+                 <label class=" control-label" for="{{form.fbFormateur.vars.id}}">Facebook</label>
+                     <input type="text" class="form-control" id="{{form.fbFormateur.vars.id}}" name="{{ form.fbFormateur.vars.full_name}}" value="{{ form.fbFormateur.vars.value}}" placeholder="https://facebook.com/utilisateur">
+                 {% do form.fbFormateur.setRendered %}
+                 {% if not form.fbFormateur.vars.valid %}
+                     {% for error in form.fbFormateur.vars.errors %}
+                         <span class="help-block">{{ error.message }}</span>
+                     {% endfor %}
+                 {% endif %}
+             </div>
+             </div>
+             <!-- le champ linkedin-->
+             {% set class='' %}
+             {% if not form.linkFormateur.vars.valid %}
+                 {% set class="has-error" %}
+             {% endif %}
+             <div class="form-group {{class}} row" >
+                 <div class="col-sm-10">
+                 <label class="control-label" for="{{form.linkFormateur.vars.id}}">Linkedin</label>
+                     <input type="text" class="form-control" id="{{form.linkFormateur.vars.id}}" name="{{ form.linkFormateur.vars.full_name}}" value="{{ form.linkFormateur.vars.value}}" placeholder="https://linkedin.com/utilisateur">
+                 {% do form.linkFormateur.setRendered %}
+                 {% if not form.linkFormateur.vars.valid %}
+                     {% for error in form.linkFormateur.vars.errors %}
+                         <span class="help-block">{{ error.message }}</span>
+                     {% endfor %}
+                 {% endif %}
+             </div>
+             </div>
+             <!-- le champ Image-->
+             {% set class='' %}
+             {% if not form.file.vars.valid %}
+                 {% set class="has-error" %}
+             {% endif %}
+             <div class="form-group {{class}} row" >
+                 <div class="col-sm-10">
+                 <label class="control-label" for="{{form.file.vars.id}}">Image</label>
+                     <input type="file" class="form-control" id="{{form.file.vars.id}}" name="{{ form.file.vars.full_name}}" value="{{ form.file.vars.value}}">
+                 {% do form.file.setRendered %}
+                 {% if not form.file.vars.valid %}
+                     {% for error in form.file.vars.errors %}
+                         <span class="help-block">{{ error.message }}</span>
+                     {% endfor %}
+                 {% endif %}
+             </div>
+             </div>
+             <!-- le champ CV-->
+             {% set class='' %}
+             {% if not form.cvformateur.vars.valid %}
+                 {% set class="has-error" %}
+             {% endif %}
+             <div class="form-group {{class}} row" >
+                 <div class="col-sm-10">
+                 <label class="control-label" for="{{form.cvformateur.vars.id}}">Pièce jointe</label>
+                     <input type="file" class="form-control" id="{{form.cvformateur.vars.id}}" name="{{ form.cvformateur.vars.full_name}}" value="{{ form.cvformateur.vars.value}}">
+                 {% do form.cvformateur.setRendered %}
+                 {% if not form.cvformateur.vars.valid %}
+                     {% for error in form.cvformateur.vars.errors %}
+                         <span class="help-block">{{ error.message }}</span>
+                     {% endfor %}
+                 {% endif %}
+             </div>
+             </div>
+
+         </div>
+
+        <div class="box-footer">
+                 <input class="btn btn-primary btn-md" type="submit" value="Ajouter" />
+                 <a  class='btn btn-warning btn-md' href="{{ path('formateur_index')  }}"> Annuler</a>
+                 {{ form_end(form) }}
+
+                 <ul class="pager">
+                     <li class="previous">
+                      <a href="{{ path('formateur_index') }}">Retourner à la liste</a>
+                     </li>
+                 </ul>
         </div>
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="Email Address">Adresse Email</label>
-        <div class="col-md-4">
-           <div class="input-group ">
-               <div class="input-group-addon">
-                   <i class="fa fa-envelope-o"></i>
-                </div>
-               {{ form_widget(form.emailFormateur) }}
-           </div>
-        </div>
+
     </div>
-    <div class="form-group">
-       <label class="col-md-4 control-label" for="telformateur">Téléphone  </label>
-           <div class="col-md-4">
-               <div class="input-group">
-                   <div class="input-group-addon">
-                                    <i class="fa fa-phone"></i>
-                    </div>
-                   {{ form_widget(form.telFormateur) }}
-               </div>
-           </div>
-        </div>
-    <div class="form-group">
-       <label class="col-md-4 control-label" for="domaine">Domaine d'expertise</label>
-           <div class="col-md-4">
-               <div class="input-group ">
-                    <div class="input-group-addon">
-                        <i class="fa fa-graduation-cap"></i>
-                    </div>
-                   {{ form_widget(form.descriptionFormateur) }}
-               </div>
-           </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="facebook">Facebook</label>
-            <div class="col-md-4">
-                <div class="input-group ">
-                    <div class="input-group-addon">
-                          <i class="fa fa-facebook"></i>
-                    </div>
-                    {{ form_widget(form.fbFormateur) }}
-                </div>
-            </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="linkedin">Linkedin</label>
-            <div class="col-md-4">
-                 <div class="input-group ">
-                    <div class="input-group-addon">
-                       <i class="fa fa-linkedin"></i>
-                    </div>
-                     {{ form_widget(form.linkFormateur) }}
-                  </div>
-            </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="photo">Photo</label>
-            <div class="col-md-4">
-                <div class="input-group ">
-                     {{ form_widget(form.file) }}
-                </div>
-            </div>
-    </div>
-    <div class="form-group">
-       <label class="col-md-4 control-label" for="cv">CV (PDF)</label>
-           <div class="col-md-4">
-                <div class="input-group ">
-                     {{ form_widget(form.cvformateur) }}
-                 </div>
-           </div>
-    </div>
-    <div class="form-group">
-         <label class="col-md-4 control-label" ></label>
-           <div class="col-md-4">
-               <input type="submit" value="Ajouter" class="btn btn-primary">
-               <a  class='btn btn-warning btn-md' href="{{ path('formateur_index')  }}"> Annuler</a>
-           </div>
-    </div>
-                </fieldset>
-    <ul class="pager">
-<li class="previous"><a href="{{ path('formateur_index') }}">Retourner à la liste</a></li>
-    </ul>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('template/bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('template/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('template/bower_components/fastclick/lib/fastclick.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('template/dist/js/adminlte.min.js')}}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('template/dist/js/demo.js')}}"></script>
 {% endblock %}

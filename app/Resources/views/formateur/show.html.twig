@@ -1,60 +1,40 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Formateur</h1>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ formateur.id }}</td>
-            </tr>
-            <tr>
-                <th>Cinformateur</th>
-                <td>{{ formateur.cINFormateur }}</td>
-            </tr>
-            <tr>
-                <th>Nomformateur</th>
-                <td>{{ formateur.nomFormateur }}</td>
-            </tr>
-            <tr>
-                <th>Prenomformateur</th>
-                <td>{{ formateur.prenomFormateur }}</td>
-            </tr>
-            <tr>
-                <th>Emailformateur</th>
-                <td>{{ formateur.emailFormateur }}</td>
-            </tr>
-            <tr>
-                <th>Descriptionformateur</th>
-                <td>{{ formateur.descriptionFormateur }}</td>
-            </tr>
-            <tr>
-                <th>Telformateur</th>
-                <td>{{ formateur.telFormateur }}</td>
-            </tr>
-            <tr>
-                <th>Fbformateur</th>
-                <td>{{ formateur.fbFormateur }}</td>
-            </tr>
-            <tr>
-                <th>Linkformateur</th>
-                <td>{{ formateur.linkFormateur }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="panel panel-info class ">
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <p><img src="{{ asset('/images/')}}{{formateur.photoformateur}}" style="width: 200px;height:200px" class="img-rounded img-responsive"></p>
+                    <br><br><br>
+                    <p><a  class='btn btn-info btn-sm' href="{{ path('formateur_edit', { 'id': formateur.id })  }}"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
+                    <a class='btn btn-warning btn-sm' href="{{ path('formateur_delete', { 'id': formateur.id })  }}"><span class="glyphicon glyphicon-remove"></span>Supprimer</a></p>
 
-    <ul>
-        <li>
-            <a href="{{ path('formateur_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('formateur_edit', { 'id': formateur.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                </div>
+                <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+                    <div class="container" >
+                        <h2>{{ formateur.prenomFormateur }} {{ formateur.nomFormateur }}</h2>
+                        <a type="button" class="btn-floating btn-lg btn-fb"><i class="fa fa-facebook"></i></a>
+                    </div>
+                    <hr>
+                    <ul class="container details">
+                        <p><span class="glyphicon glyphicon-education one" style="width:50px;color:#31b0d5"></span>{{ formateur.descriptionFormateur }}</p>
+                        <p><span class="glyphicon glyphicon-info-sign one" style="width:50px;color:#31b0d5"></span>{{ formateur.cINFormateur }}</p>
+                        <p><span class="glyphicon glyphicon-phone one" style="width:50px;color:#31b0d5"></span>{{ formateur.telFormateur }}</p>
+                        <p><span class="glyphicon glyphicon-envelope one" style="width:50px;color:#31b0d5"></span>{{ formateur.emailFormateur }}</p>
+                        <p><span class="glyphicon glyphicon-circle-arrow-down" style="width:50px;color:#31b0d5"></span>
+                            <a href="{{ asset('uploads/cvformateur/'~ formateur.cvformateur) }}">CV</a>
+                        </p>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
 {% endblock %}
