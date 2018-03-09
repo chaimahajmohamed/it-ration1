@@ -16,3 +16,7 @@ admin_formation_sous_service:
 admin_formation_formateur:
         resource: "@AdminFormationBundle/Resources/config/routing/formateur.yml"
         prefix:   /formateur
+
+admin_formation_formation:
+        resource: "@AdminFormationBundle/Resources/config/routing/formation.yml"
+        prefix:   /formation

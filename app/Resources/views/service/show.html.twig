@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends "user/layoutadmin.html.twig" %}
 
-{% block body %}
+{% block fos_user_content %}
     <h1>{{ service.libelleService }}</h1>
 
     <table class="table table-bordred">
@@ -27,10 +27,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_index') }}">Retourner à la liste</a>
+            <a href="{{ path('service_index') }}">Retourner à la liste</a>
         </li>
         <li>
-            <a href="{{ path('admin_edit', { 'id': service.id }) }}">Modifier</a>
+            <a href="{{ path('service_edit', { 'id': service.id }) }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

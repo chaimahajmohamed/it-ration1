@@ -1,10 +1,12 @@
 <div id="menu">
     <ul class="sidebar-menu" data-widget="tree">
+        <!-- menu tableau de bord -->
         <li class="active treeview">
             <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Tableau de bord</span>
             </a>
         </li>
+        <!--menu modifier profil -->
         <li class="treeview">
             <a href="">
                 <i class="fa fa-table"></i> <span>Modifier Profil</span>
@@ -13,13 +15,53 @@
             </span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-circle-o"></i> Modifier</a></li>
+                <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-circle-o text-aqua"></i> Modifier</a></li>
+                <li><a href="{{ path('fos_user_change_password') }}"><i class="fa fa-circle-o text-aqua"></i> Changer le mot de passe</a></li>
             </ul>
         </li>
-        <li>
+        <!--/menu modifier profil -->
+        <!--menu formateur-->
+        <li class="treeview">
             <a href="">
-                <i class="fa fa-calendar"></i> <span>Calendrier</span>
+                <i class="fa fa-user"></i> <span>Formateur</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
             </a>
+            <ul class="treeview-menu">
+                <li><a href="{{ path('formateur_index') }}"><i class="fa fa-circle-o text-aqua"></i> Lister formateurs</a></li>
+
+            </ul>
         </li>
+        <!--/menu formateur -->
+        <!--menu service-->
+        <li class="treeview">
+            <a href="">
+                <i class="fa fa-folder"></i> <span>Service</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{ path('service_index') }}"><i class="fa fa-circle-o text-aqua"></i> Lister services</a></li>
+
+            </ul>
+        </li>
+        <!--/menu service -->
+
+        <!--menu sous service -->
+        <li class="treeview">
+            <a href="">
+                <i class="fa fa-edit"></i> <span>Sous service</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{ path('sous_service_index') }}"><i class="fa fa-circle-o text-aqua"></i> Lister sous services</a></li>
+            </ul>
+        </li>
+        <!--/menu sous service-->
+        <!--/menu tableau de bord -->
     </ul>
 </div>

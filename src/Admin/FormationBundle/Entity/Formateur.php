@@ -97,7 +97,7 @@ class Formateur
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank(message="S'il vous plait, joindre un fichier de format PDF.")
-     * @Assert\File(mimeTypes={ "PDF" })
+     * @Assert\File(mimeTypes={ "application/pdf" })
      */
     private $cvformateur;
 

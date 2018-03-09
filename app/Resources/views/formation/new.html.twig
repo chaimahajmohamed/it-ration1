@@ -1,7 +1,7 @@
-{% extends "user/layoutadmin.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block fos_user_content %}
-    <h1>Sous_service creation</h1>
+{% block body %}
+    <h1>Formation creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('sous_service_index') }}">Back to the list</a>
+            <a href="{{ path('formation_index') }}">Back to the list</a>
         </li>
     </ul>
 {% endblock %}
