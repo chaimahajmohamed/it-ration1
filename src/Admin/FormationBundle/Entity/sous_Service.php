@@ -3,6 +3,7 @@
 namespace Admin\FormationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * sous_Service
@@ -25,6 +26,7 @@ class sous_Service
      * @var string
      *
      * @ORM\Column(name="libelle_sous", type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $libelleSous;
 
@@ -32,11 +34,13 @@ class sous_Service
      * @var string
      *
      * @ORM\Column(name="description_sous", type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $descriptionSous;
     /**
      * @ORM\ManyToOne(targetEntity="Service" ,cascade={"remove"})
      * @ORM\JoinColumn(name="id_service",referencedColumnName="id")
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $service;
 

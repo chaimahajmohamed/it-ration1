@@ -1,41 +1,72 @@
-{% extends 'base.html.twig' %}
+{% extends "user/layoutadmin.html.twig" %}
+{% block fos_user_content %}
+    {% block stylesheet %}
+        <!------ Include the above in your HEAD tag ---------->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/font-awesome/css/font-awesome.min.css')}}">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/Ionicons/css/ionicons.min.css')}}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('template/dist/css/AdminLTE.min.css')}}">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="{{ asset('template/dist/css/skins/_all-skins.min.css')}}">
+    {% endblock %}
+    <div class="text-center">
+        <a class='btn btn-primary btn-md center' href="{{ path('sous_service_new') }}"><span class="glyphicon glyphicon-plus"></span> Ajouter Sous Service</a>
+    </div><br/>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Les Sous Services</h3>
 
-{% block body %}
-    <h1>Sous_services list</h1>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Rechercher">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Libellesous</th>
-                <th>Descriptionsous</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for sous_Service in sous_Services %}
-            <tr>
-                <td><a href="{{ path('sous_service_show', { 'id': sous_Service.id }) }}">{{ sous_Service.id }}</a></td>
-                <td>{{ sous_Service.libelleSous }}</td>
-                <td>{{ sous_Service.descriptionSous }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('sous_service_show', { 'id': sous_Service.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('sous_service_edit', { 'id': sous_Service.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('sous_service_new') }}">Create a new sous_Service</a>
-        </li>
-    </ul>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th class="text-center"><em class="glyphicon glyphicon-cog"></em></th>
+                    </tr>
+                    <tr>
+                        {% for sous_Service in sous_Services %}
+                    <tr class="ok">
+                        <td class="col-sm-4"> {{ sous_Service.libelleSous }}</td>
+                        <td class="col-sm-4">{{ sous_Service.descriptionSous }}</td>
+                        <td class="col-sm-4 text-center">
+                            <!-- <a  class='btn btn-info btn-sm' href="{{ path('sous_service_show', { 'id': sous_Service.id }) }}"><span class="glyphicon glyphicon-eye-open"></span> Afficher</a>-->
+                            <a class='btn btn-warning btn-sm' href="{{ path('sous_service_edit', { 'id': sous_Service.id }) }}"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
+                            <a class='btn btn-danger btn-sm' href="{{ path('sous_service_delete', { 'id': sous_Service.id }) }}"><span class="glyphicon glyphicon-remove"></span> Supprimer</a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="{{ path('sous_service_index') }}">&laquo;</a></li>
+                    <li><a href="{{ path('sous_service_index') }}">1</a></li>
+                    <li><a href="{{ path('sous_service_index') }}">2</a></li>
+                    <li><a href="{{ path('sous_service_index') }}">3</a></li>
+                    <li><a href="{{ path('sous_service_index') }}">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.box -->
 {% endblock %}

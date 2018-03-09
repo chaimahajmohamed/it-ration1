@@ -14,7 +14,7 @@ class ServiceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('libelleService',textType::class)
+        $builder->add('libelleService',textType::class,array('required' => true))
                 ->add('descriptionService',TextareaType::class, array(
                     'attr' => array('class' => 'AdminFormationBundle')))
                 ->add('file');

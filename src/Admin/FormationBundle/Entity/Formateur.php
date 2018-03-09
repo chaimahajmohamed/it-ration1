@@ -26,19 +26,20 @@ class Formateur
      * @var int
      *
      * @ORM\Column(name="CIN_formateur", type="integer")
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $cINFormateur;
 
     /**
      * @var string
-     *@Assert\Type("string")
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      * @ORM\Column(name="nom_formateur", type="string", length=255)
      */
     private $nomFormateur;
 
     /**
      * @var string
-     *@Assert\Type("string")
+     *@Assert\NotBlank(message="Ce champ est obligatoire.")
      * @ORM\Column(name="prenom_formateur", type="string", length=255)
      *
      */
@@ -54,7 +55,7 @@ class Formateur
 
     /**
      * @var string
-     *@Assert\Type("string")
+     *@Assert\NotBlank(message="Ce champ est obligatoire.")
      * @ORM\Column(name="description_formateur", type="string", length=255)
      */
     private $descriptionFormateur;
@@ -63,7 +64,11 @@ class Formateur
      * @var int
      *
      * @ORM\Column(name="tel_formateur", type="integer")
-     *
+     *@Assert\Length(
+     *      min = 8,
+     *      max = 12,
+     *      minMessage = "Ce format de numéro de téléphone n'est pas reconnu.Au moins {{ limit }} caractéres. ",
+     *      maxMessage = "Ce format de numéro de téléphone n'est pas reconnu.Au maximum {{ limit }} caractéres.")
      */
     private $telFormateur;
 
@@ -89,15 +94,15 @@ class Formateur
      */
     public $photoformateur;
     /**
-     *@Assert\NotBlank(message="S'il vous plait, joindre un fichier de format (PNG,JPEG,..).")
-     * @Assert\File(maxSize="1500k")
+     *@Assert\NotBlank(message="S'il vous plait, joindre un fichier de format (PNG,JPEG,PJPEG,..).")
+     * @Assert\File(maxSize="1500k",mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
      */
     public $file;
     /**
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank(message="S'il vous plait, joindre un fichier de format PDF.")
-     * @Assert\File(mimeTypes={ "PDF" })
+     * @Assert\File(mimeTypes={ "application/pdf" })
      */
     private $cvformateur;
 

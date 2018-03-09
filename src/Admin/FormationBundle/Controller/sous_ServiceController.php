@@ -78,14 +78,14 @@ class sous_ServiceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('sous_service_edit', array('id' => $sous_Service->getId()));
+            return $this->redirectToRoute('sous_service_show', array('id' => $sous_Service->getId()));
         }
 
         return $this->render('sous_service/edit.html.twig', array(
             'sous_Service' => $sous_Service,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+            'delete_form' => $deleteForm->createView(),));
+
     }
 
     /**

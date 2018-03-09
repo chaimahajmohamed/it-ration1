@@ -26,6 +26,7 @@ class Service
      * @var string
      *
      * @ORM\Column(name="libelle_service", type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $libelleService;
 
@@ -33,6 +34,7 @@ class Service
      * @var string
      *
      * @ORM\Column(name="description_service", type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $descriptionService;
     /**
@@ -41,8 +43,10 @@ class Service
      * @ORM\Column(name="image_service", type="string", length=255)
      */
     public $imageservice;
+
     /**
-     * @Assert\File(maxSize="1500k")
+     * @Assert\NotBlank(message="S'il vous plait, joindre un fichier de format (PNG,JPEG,..).")
+     * @Assert\File(maxSize="1500k",mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
      */
     public $file;
 
@@ -104,6 +108,7 @@ class Service
     {
         return $this->descriptionService;
     }
+    //
     public function getWebPath()
     {
         return null===$this->imageservice ? null : $this->getUploadDir.'/'.$this->imageservice;
@@ -122,6 +127,7 @@ class Service
         $this->imageservice=$this->file->getClientOriginalName();
         $this->file=null;
     }
+    //
     /**
      * Set imageservice
      *
