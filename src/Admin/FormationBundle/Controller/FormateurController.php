@@ -83,7 +83,7 @@ class FormateurController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('formateur_edit', array('id' => $formateur->getId()));
+            return $this->redirectToRoute('formateur_show', array('id' => $formateur->getId()));
         }
 
         return $this->render('formateur/edit.html.twig', array(

@@ -1,24 +1,99 @@
 {% extends "user/layoutadmin.html.twig" %}
-
 {% block fos_user_content %}
-    <section class="content">
-    <div class="row">
-    <!-- left column -->
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('template/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/bower_components/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/bower_components/Ionicons/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/dist/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/dist/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+{% endblock %}
+
     <div class="col-md-6">
-    <!-- general form elements -->
-    <div class="box box-primary">
+    <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">Ajouter service</h3>
+        <h3 class="box-title text-info">Ajouter Service</h3>
+        <a  class='btn btn-primary btn-xs pull-right' href="{{ path('service_index') }}"><i class="glyphicon glyphicon-remove "></i></a>
     </div>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input class="btn btn-primary" type="submit" value="Ajouter" />
-    {{ form_end(form) }}
+    <div class="box-body">
+    {{ form_start(form,{'attr':{'novalidate':'novalidate'}})}}
+    <!-- le champ titre-->
+    {% set class='' %}
+    {% if not form.libelleService.vars.valid %}
+        {% set class="has-error" %}
+    {% endif %}
 
-    <ul>
-        <li>
-            <a href="{{ path('service_index') }}">Retourner à la liste</a>
-        </li>
-    </ul>
+    <div class="form-group {{class}} row" >
+        <div class="col-sm-10">
+            <label class="control-label" for="{{form.libelleService.vars.id}}">Titre</label>
+            <input type="text" class="form-control" id="{{form.libelleService.vars.id}}" name="{{ form.libelleService.vars.full_name}}" value="{{ form.libelleService.vars.value}}" placeholder="Entrer le titre" required>
+
+            {% do form.libelleService.setRendered %}
+            {% if not form.libelleService.vars.valid %}
+                {% for error in form.libelleService.vars.errors %}
+                    <span class="help-block">{{ error.message }}</span>
+                {% endfor %}
+            {% endif%}
+        </div>
+    </div>
+    <!-- le champ description -->
+    {% set class='' %}
+    {% if not form.descriptionService.vars.valid %}
+        {% set class="has-error" %}
+    {% endif %}
+
+    <div class="form-group {{class}} row" >
+        <div class="col-sm-10">
+            <label class="control-label" for="{{form.descriptionService.vars.id}}">Description</label>
+            <textarea rows="4" class="form-control" id="{{form.descriptionService.vars.id}}" name="{{ form.descriptionService.vars.full_name}}" value="{{ form.descriptionService.vars.value}}" placeholder="Entrer la description"></textarea>
+
+            {% do form.descriptionService.setRendered %}
+            {% if not form.descriptionService.vars.valid %}
+                {% for error in form.descriptionService.vars.errors %}
+                    <span class="help-block">{{ error.message }}</span>
+                {% endfor %}
+            {% endif%}
+        </div>
+    </div>
+    <!-- le champ Image-->
+    {% set class='' %}
+    {% if not form.file.vars.valid %}
+        {% set class="has-error" %}
+    {% endif %}
+    <div class="form-group {{class}} row" >
+        <div class="col-sm-10">
+            <label class="control-label" for="{{form.file.vars.id}}">Image</label>
+            <input type="file" class="form-control" id="{{form.file.vars.id}}" name="{{ form.file.vars.full_name}}" value="{{ form.file.vars.value}}">
+            {% do form.file.setRendered %}
+            {% if not form.file.vars.valid %}
+                {% for error in form.file.vars.errors %}
+                    <span class="help-block">{{ error.message }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+        <div class="box-footer">
+            <input class="btn btn-primary btn-md" type="submit" value="Ajouter" />
+            <a  class='btn btn-warning btn-md' href="{{ path('service_index')  }}"> Annuler</a>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+    </div>
+{% endblock %}
+ {% block javascripts %}
+        <script src="{{ asset('template/bower_components/jquery/dist/jquery.min.js')}}"></script>
+        <!-- Bootstrap 3.3.7 -->
+        <script src="{{ asset('template/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+        <!-- FastClick -->
+        <script src="{{ asset('template/bower_components/fastclick/lib/fastclick.js')}}"></script>
+        <!-- AdminLTE App -->
+        <script src="{{ asset('template/dist/js/adminlte.min.js')}}"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="{{ asset('template/dist/js/demo.js')}}"></script>
+
 {% endblock %}

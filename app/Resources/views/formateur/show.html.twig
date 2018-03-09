@@ -1,41 +1,58 @@
 {% extends "user/layoutadmin.html.twig" %}
-{% block stylesheet %}
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
-{% endblock %}
 {% block fos_user_content %}
-
-    <div class="container">
-        <div class="panel panel-info class ">
-            <div class="row">
-                <div class="col-md-4 col-xs-12">
-                    <p><img src="{{ asset('/images/')}}{{formateur.photoformateur}}" style="width: 200px;height:200px" class="img-rounded img-responsive"></p>
-                    <br><br><br>
-                    <p><a  class='btn btn-info btn-sm' href="{{ path('formateur_edit', { 'id': formateur.id })  }}"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
-                    <a class='btn btn-warning btn-sm' href="{{ path('formateur_delete', { 'id': formateur.id })  }}"><span class="glyphicon glyphicon-remove"></span>Supprimer</a></p>
-
-                </div>
-                <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
-                    <div class="container" >
-                        <h2>{{ formateur.prenomFormateur }} {{ formateur.nomFormateur }}</h2>
-                        <a type="button" class="btn-floating btn-lg btn-fb"><i class="fa fa-facebook"></i></a>
-                    </div>
-                    <hr>
-                    <ul class="container details">
-                        <p><span class="glyphicon glyphicon-education one" style="width:50px;color:#31b0d5"></span>{{ formateur.descriptionFormateur }}</p>
-                        <p><span class="glyphicon glyphicon-info-sign one" style="width:50px;color:#31b0d5"></span>{{ formateur.cINFormateur }}</p>
-                        <p><span class="glyphicon glyphicon-phone one" style="width:50px;color:#31b0d5"></span>{{ formateur.telFormateur }}</p>
-                        <p><span class="glyphicon glyphicon-envelope one" style="width:50px;color:#31b0d5"></span>{{ formateur.emailFormateur }}</p>
-                        <p><span class="glyphicon glyphicon-circle-arrow-down" style="width:50px;color:#31b0d5"></span>
-                            <a href="{{ asset('uploads/cvformateur/'~ formateur.cvformateur) }}">CV</a>
-                        </p>
+    {% block stylesheet %}
+        <link rel="stylesheet" href="{{ asset('template/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/font-awesome/css/font-awesome.min.css')}}">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/Ionicons/css/ionicons.min.css')}}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('template/dist/css/AdminLTE.min.css')}}">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="{{ asset('template/dist/css/skins/_all-skins.min.css')}}">
+    {% endblock %}
 
 
-                    </ul>
-                </div>
+    <div class="box box-primary">
+        <div class="box-body box-profile">
+            <div class="btn-group-vertical pull-right">
+            <a  class='btn btn-primary btn-sm text-center' href="{{  path('formateur_index') }}"><i class="glyphicon glyphicon-remove "></i></a><br>
+            <a  class='btn btn-warning btn-sm text-center' href="{{ path('formateur_edit', { 'id': formateur.id }) }}"><i class="glyphicon glyphicon-edit"></i></a><br>
+            {{ form_start(delete_form) }}
+            <button type="submit" value="Supprimer" class="btn btn-danger btn-sm pull-right"><i class="glyphicon glyphicon-trash"></i></button>
+            {{ form_end(delete_form) }}
             </div>
-        </div>
+            <img src="{{ asset('/images/')}}{{formateur.photoformateur}}" style="width: 200px;height:200px" class="profile-user-img img-responsive img-circle">
 
+            <h3 class="profile-username text-center">{{ formateur.prenomFormateur }} {{ formateur.nomFormateur }}</h3>
+
+            <p class="text-muted text-center">{{ formateur.descriptionFormateur }}</p>
+            <table class="table">
+                <tr>
+                    <td><b>CIN</b></td>
+                    <td>{{ formateur.cINFormateur }}</td>
+                </tr>
+                <tr>
+                    <td><b>Téléphone</b></td>
+                    <td>{{ formateur.telFormateur }}</td>
+                </tr>
+                <tr>
+                    <td><b>Email</b></td>
+                    <td>{{ formateur.emailFormateur }}</td>
+                </tr>
+                <tr>
+                    <td><b>CV</b></td>
+                    <td><a  href="{{ asset('uploads/cvformateur/'~ formateur.cvformateur) }}">Consulter</a></td>
+                </tr>
+                <tr>
+                    <td><b>Réseaux Sociaux</b></td>
+                    <td><a class="btn btn-social-icon btn-facebook btn-xs " href="{{ formateur.fbFormateur }}"><i class="fa fa-facebook"></i></a>
+                        <a class="btn btn-social-icon btn-linkedin btn-xs text-center" href="{{ formateur.linkFormateur }}"><i class="fa fa-linkedin"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
 {% endblock %}

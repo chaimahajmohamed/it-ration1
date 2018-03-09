@@ -79,7 +79,8 @@ class ServiceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('service_edit', array('id' => $service->getId()));
+
+            return $this->redirectToRoute('service_show', array('id' => $service->getId()));
         }
 
         return $this->render('service/edit.html.twig', array(
