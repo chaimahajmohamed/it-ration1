@@ -6,20 +6,7 @@
                 <i class="fa fa-dashboard"></i> <span>Tableau de bord</span>
             </a>
         </li>
-        <!--menu modifier profil -->
-        <li class="treeview">
-            <a href="">
-                <i class="fa fa-table"></i> <span>Modifier Profil</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-circle-o text-aqua"></i> Modifier</a></li>
-                <li><a href="{{ path('fos_user_change_password') }}"><i class="fa fa-circle-o text-aqua"></i> Changer le mot de passe</a></li>
-            </ul>
-        </li>
-        <!--/menu modifier profil -->
+
         <!--menu formateur-->
         <li class="treeview">
             <a href="">
@@ -43,7 +30,7 @@
             </span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{ path('service_index') }}"><i class="fa fa-circle-o text-aqua"></i> Lister services</a></li>
+                <li><a href="{{ path('service_index') }}"><i class="fa fa-circle-o text-aqua"></i> Lister les services</a></li>
 
             </ul>
         </li>
@@ -58,7 +45,33 @@
             </span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{ path('sous_service_index') }}"><i class="fa fa-circle-o text-aqua"></i> Lister sous services</a></li>
+                <li><a href="{{ path('sous_service_index') }}"><i class="fa fa-circle-o text-aqua"></i> Lister les sous services</a></li>
+            </ul>
+        </li>
+        <!--/menu sous service-->
+        <!--menu formation -->
+        <li class="treeview">
+            <a href="">
+                <i class="fa fa-list"></i> <span>Formation</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{ path('formation_index') }}"><i class="fa fa-circle-o text-aqua"></i> Lister les formations</a></li>
+            </ul>
+        </li>
+        <!--/menu Formation-->
+        <!--menu sous service -->
+        <li class="treeview">
+            <a href="">
+                <i class="fa fa-calendar"></i> <span>Evènement</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{ path('evenement_index') }}"><i class="fa fa-circle-o text-aqua"></i> Lister les Evènements</a></li>
             </ul>
         </li>
         <!--/menu sous service-->

@@ -16,15 +16,12 @@ class sous_ServiceController extends Controller
      * Lists all sous_Service entities.
      *
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $sous_Services = $em->getRepository('AdminFormationBundle:sous_Service')->findAll();
-        $sous_Services = $this->get('knp_paginator')->paginate(
-            $sous_Services,
-            $request->query->get('page', 1)/*le numéro de la page à afficher*/,
-            4/*nbre d'éléments par page*/);
+
         return $this->render('sous_service/index.html.twig', array(
             'sous_Services' => $sous_Services,
         ));
@@ -122,6 +119,17 @@ class sous_ServiceController extends Controller
             ->setAction($this->generateUrl('sous_service_delete', array('id' => $sous_Service->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
+    }
+    /** Ceci pour la barre de recherche */
+    public function rechercheAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $motcle=$request->get('motcle');
+        $sous_Services = $em->getRepository('AdminFormationBundle:sous_Service')->findSousServiceBynom($motcle);
+
+        return $this->render('sous_service/index.html.twig', array(
+            'sous_Services' => $sous_Services,
+        ));
     }
 }

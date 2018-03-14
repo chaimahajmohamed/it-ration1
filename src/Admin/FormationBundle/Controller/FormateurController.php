@@ -16,16 +16,12 @@ class FormateurController extends Controller
      * Lists all formateur entities.
      *
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $formateurs = $em->getRepository('AdminFormationBundle:Formateur')->findAll();
-        $formateurs = $this->get('knp_paginator')->paginate(
-            $formateurs,
-            $request->query->get('page', 1)/*le numéro de la page à afficher*/,
-            4/*nbre d'éléments par page*/
-        );
+
         return $this->render('formateur/index.html.twig', array(
             'formateurs' => $formateurs,
         ));
@@ -128,6 +124,18 @@ class FormateurController extends Controller
             ->setAction($this->generateUrl('formateur_delete', array('id' => $formateur->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
+    }
+    /** Ceci pour la barre de recherche */
+
+    public function rechercheAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $motcle=$request->get('motcle');
+        $formateurs = $em->getRepository('AdminFormationBundle:Formateur')->findFormateursBynom($motcle);
+
+        return $this->render('formateur/index.html.twig', array(
+            'formateurs' => $formateurs,
+        ));
     }
 }

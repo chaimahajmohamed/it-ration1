@@ -1,41 +1,80 @@
-{% extends 'base.html.twig' %}
+{% extends "user/layoutadmin.html.twig" %}
 
-{% block body %}
-    <h1>Formations list</h1>
+{% block fos_user_content %}
+    {% block stylesheet %}
+        <!------ Include the above in your HEAD tag ---------->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/font-awesome/css/font-awesome.min.css')}}">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/Ionicons/css/ionicons.min.css')}}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('template/dist/css/AdminLTE.min.css')}}">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nomformation</th>
-                <th>Descriptionformation</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for formation in formations %}
-            <tr>
-                <td><a href="{{ path('formation_show', { 'id': formation.id }) }}">{{ formation.id }}</a></td>
-                <td>{{ formation.nomFormation }}</td>
-                <td>{{ formation.descriptionFormation }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('formation_show', { 'id': formation.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('formation_edit', { 'id': formation.id }) }}">edit</a>
-                        </li>
+        <link rel="stylesheet" href="{{ asset('template/dist/css/skins/_all-skins.min.css')}}">
+    {% endblock %}
+    <!-- Bouton ajouter une formation -->
+    <div class="text-center">
+        <a class='btn btn-primary btn-md center' href="{{ path('formation_new') }}"><span class="glyphicon glyphicon-plus"></span> Ajouter une formation</a>
+    </div><br/>
+    <!-- /bouton ajouter une formation -->
+    <!--liste des formations -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Les Formations</h3>
+
+                    <div class="box-tools">
+                        <form class="collpase navbar-collapse navbar-ex1-collapse" method="post" action="{{ path('formation_recherche') }}">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+
+                                <input type="text" name="motcle"  class="form-control pull-right" placeholder="Rechercher" >
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Image </th>
+                            <th>Nom </th>
+                            <th>Description </th>
+                            <th class="text-center"><em class="glyphicon glyphicon-cog"></em></th>
+                        </tr>
+                        <tr>
+                            {% for formation in formations %}
+                        <tr class="ok">
+                            <td><img src="{{ asset('photoFormation/')}}{{ formation.photoFormation }}" style="width: 50px;height: 50px"></td>
+                            <td class="col-sm-4">{{ formation.nomFormation }}</td>
+                            <td class="col-sm-4">{{ formation.descriptionFormation }}</td>
+                            <td class="col-sm-4 text-center">
+                                <a class='btn btn-info btn-sm' href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="glyphicon glyphicon-eye-open"></span> Afficher</a>
+                                <a class='btn btn-warning btn-sm' href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
+                                <a class='btn btn-danger btn-sm' href="{{ path('formation_delete', { 'id': formation.id }) }}"><span class="glyphicon glyphicon-remove"></span> Supprimer</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        <li><a href="{{ path('formation_index') }}">&laquo;</a></li>
+                        <li><a href="{{ path('formation_index') }}">1</a></li>
+                        <li><a href="{{ path('formation_index') }}">2</a></li>
+                        <li><a href="{{ path('formation_index') }}">3</a></li>
+                        <li><a href="{{ path('formation_index') }}">&raquo;</a></li>
                     </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('formation_new') }}">Create a new formation</a>
-        </li>
-    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.box -->
+    <!-- /liste des formations -->
 {% endblock %}

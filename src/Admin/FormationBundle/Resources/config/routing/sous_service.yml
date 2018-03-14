@@ -22,3 +22,6 @@ sous_service_delete:
     path:     /{id}/delete
     defaults: { _controller: "AdminFormationBundle:sous_Service:delete" }
     methods:  DELETE
+sous_service_recherche:
+    path:     /recherche
+    defaults: { _controller: "AdminFormationBundle:sous_Service:recherche" }

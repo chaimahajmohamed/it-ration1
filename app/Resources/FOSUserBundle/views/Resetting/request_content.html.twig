@@ -7,6 +7,8 @@
                     <br><br><br><br>
                     <p>Réinitialiser votre mot de passe</p>
                     <div class="form-group">
+
+
                         <form action="{{ path('fos_user_resetting_send_email') }}" method="POST"  class="fos_user_resetting_request login-form" role="form" on>
                             <div class="form-group">
                                 <label  class="fos_user_resetting_request" for="username" class="sr-only">{{ 'resetting.request.username'|trans }}</label>

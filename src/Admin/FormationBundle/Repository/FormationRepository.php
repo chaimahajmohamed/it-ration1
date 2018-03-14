@@ -10,4 +10,17 @@ namespace Admin\FormationBundle\Repository;
  */
 class FormationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public  function findFormationsBynom($motcle)
+    {
+
+        $query=$this->createQueryBuilder('f')
+            ->where('f.nomFormation LIKE :nomFormation')
+            ->orWhere('f.descriptionFormation LIKE :descriptionFormation')
+            ->setParameter('nomFormation', '%'.$motcle.'%')
+            ->setParameter('descriptionFormation', '%'.$motcle.'%')
+            ->orderBy('f.nomFormation', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

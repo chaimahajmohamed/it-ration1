@@ -11,4 +11,21 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class FormateurRepository extends \Doctrine\ORM\EntityRepository
 {
+    public  function findFormateursBynom($motcle)
+    {
+
+        $query=$this->createQueryBuilder('f')
+            ->where('f.nomFormateur LIKE :nomFormateur')
+            ->orWhere('f.descriptionFormateur LIKE :descriptionFormateur')
+            ->orWhere('f.telFormateur LIKE :telFormateur')
+            ->orWhere('f.prenomFormateur LIKE :prenomFormateur')
+            ->setParameter('nomFormateur', '%'.$motcle.'%')
+            ->setParameter('descriptionFormateur', '%'.$motcle.'%')
+            ->setParameter('telFormateur', '%'.$motcle.'%')
+            ->setParameter('prenomFormateur', '%'.$motcle.'%')
+            ->orderBy('f.nomFormateur', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

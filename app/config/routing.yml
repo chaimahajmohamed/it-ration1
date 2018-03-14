@@ -13,7 +13,7 @@ formateur_new:
         defaults: { _controller: "AdminFormationBundle:Formateur:new" }
         methods:  [GET, POST]
 formation_new:
-        path:     /new
+        path:     /new-formation
         defaults: { _controller: "AdminFormationBundle:Formation:new" }
         methods:  [GET, POST]
 fos_user:
@@ -21,6 +21,9 @@ fos_user:
 fos_user_profile:
     resource:    "@FOSUserBundle/Resources/config/routing/profile.xml"
     prefix:    /profile
+fos_user_profile_edit:
+    resource:    "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix:    /profile/edit
 app:
     resource:    '@AppBundle/Controller/'
     type:    annotation

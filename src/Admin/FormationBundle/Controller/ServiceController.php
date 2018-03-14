@@ -16,15 +16,12 @@ class ServiceController extends Controller
      * Lists all service entities.
      *
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $services = $em->getRepository('AdminFormationBundle:Service')->findAll();
-        $services = $this->get('knp_paginator')->paginate(
-            $services,
-            $request->query->get('page', 1)/*le numéro de la page à afficher*/,
-            4/*nbre d'éléments par page*/);
+
         return $this->render('service/index.html.twig', array(
             'services' => $services,
         ));
@@ -124,6 +121,17 @@ class ServiceController extends Controller
             ->setAction($this->generateUrl('service_delete', array('id' => $service->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
+    }
+    /** Ceci pour la barre de recherche */
+    public function rechercheAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $motcle=$request->get('motcle');
+        $services = $em->getRepository('AdminFormationBundle:Service')->findServiceBynom($motcle);
+
+        return $this->render('service/index.html.twig', array(
+            'services' => $services,
+        ));
     }
 }

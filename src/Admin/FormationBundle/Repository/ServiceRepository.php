@@ -10,4 +10,17 @@ namespace Admin\FormationBundle\Repository;
  */
 class ServiceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public  function findServiceBynom($motcle)
+    {
+
+        $query=$this->createQueryBuilder('f')
+            ->where('f.libelleService LIKE :libelleService')
+            ->orWhere('f.descriptionService LIKE :descriptionService')
+            ->setParameter('libelleService', '%'.$motcle.'%')
+            ->setParameter('descriptionService', '%'.$motcle.'%')
+            ->orderBy('f.libelleService', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

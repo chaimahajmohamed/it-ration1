@@ -21,4 +21,7 @@ formateur_edit:
 formateur_delete:
     path:     /{id}/delete
     defaults: { _controller: "AdminFormationBundle:Formateur:delete" }
-    methods:  [GET, POST]
+    methods:  DELETE
+formateur_recherche:
+    path:     /recherche
+    defaults: { _controller: "AdminFormationBundle:Formateur:recherche" }

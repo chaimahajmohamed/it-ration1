@@ -22,3 +22,6 @@ formation_delete:
     path:     /{id}/delete
     defaults: { _controller: "AdminFormationBundle:Formation:delete" }
     methods:  DELETE
+formation_recherche:
+    path:     /recherche
+    defaults: { _controller: "AdminFormationBundle:Formation:recherche" }

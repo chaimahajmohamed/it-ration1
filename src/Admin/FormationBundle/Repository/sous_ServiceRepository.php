@@ -10,4 +10,17 @@ namespace Admin\FormationBundle\Repository;
  */
 class sous_ServiceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public  function findSousServiceBynom($motcle)
+    {
+
+        $query=$this->createQueryBuilder('f')
+            ->where('f.libelleSous LIKE :libelleSous')
+            ->orWhere('f.descriptionSous LIKE :descriptionSous')
+            ->setParameter('libelleSous', '%'.$motcle.'%')
+            ->setParameter('descriptionSous', '%'.$motcle.'%')
+            ->orderBy('f.libelleSous', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

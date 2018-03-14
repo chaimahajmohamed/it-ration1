@@ -21,4 +21,7 @@ service_edit:
 service_delete:
     path:     /{id}/delete
     defaults: { _controller: "AdminFormationBundle:Service:delete" }
-    methods:  [DELETE]
+    methods:  DELETE
+service_recherche:
+    path:     /recherche
+    defaults: { _controller: "AdminFormationBundle:Service:recherche" }

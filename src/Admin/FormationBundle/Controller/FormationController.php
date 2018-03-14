@@ -39,6 +39,7 @@ class FormationController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $formation->uploadProfilePicture();
             $em->persist($formation);
             $em->flush();
 
@@ -119,6 +120,16 @@ class FormationController extends Controller
             ->setAction($this->generateUrl('formation_delete', array('id' => $formation->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
+    }
+    public function rechercheAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $motcle=$request->get('motcle');
+        $formations = $em->getRepository('AdminFormationBundle:Formation')->findFormationsBynom($motcle);
+
+        return $this->render('formation/index.html.twig', array(
+            'formations' => $formations,
+        ));
     }
 }

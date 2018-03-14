@@ -4,41 +4,121 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login" id="card">
                 <div class="front signin_form">
-                    <br><br><br><br>
+                    <br><br>
                     <p>S'inscrire</p>
                     <div class="form-group">
-
-                        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register login-form'}}) }}
+                        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register login-form novalidate : novalidate'}}) }}
+                        <!-- Nom-->
+                        <!-- Ceci pour que le champ devienne en rouge si le contenu est faux -->
+                        {% set class='' %}
+                        {% if not form.nom.vars.valid %}
+                            {% set class="has-error" %}
+                        {% endif %}
+                        <!--/erreur-->
                         <div class="box-body">
-                            <div class="form-group">
-                                {{ form_row(form.nom, {'attr':{'class':'form-control'}}) }}
+                            <div class="form-group {{class}} row">
+                                <label class="control-label" for="{{form.nom.vars.id}}">Nom d'utilisateur</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="{{form.nom.vars.id}}" name="{{ form.nom.vars.full_name}}" value="{{ form.nom.vars.value}}" placeholder="Entrer votre nom" required>
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                        </span>
+                                    {% do form.nom.setRendered %}
+                                    {% if not form.nom.vars.valid %}
+                                        {% for error in form.nom.vars.errors %}
+                                            <span class="help-block">{{ error.message }}</span>
+                                        {% endfor %}
+                                    {% endif%}
+                                </div>
                             </div>
                         </div>
+                        <!--/Nom-->
+                        <!--Email-->
+                        <!-- Ceci pour que le champ devienne en rouge si le contenu est faux -->
+                        {% set class='' %}
+                        {% if not form.email.vars.valid %}
+                            {% set class="has-error" %}
+                        {% endif %}
+                        <!--/erreur-->
+                        <div class="box-body">
+                            <div class="form-group {{class}} row">
+                                <label class="control-label" for="{{form.email.vars.id}}">Adresse Email</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="{{form.email.vars.id}}" name="{{ form.email.vars.full_name}}" value="{{ form.email.vars.value}}" placeholder="Entrer votre adresse Email" required>
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-user"></i>
+                                            </span>
+                                    {% do form.email.setRendered %}
+                                    {% if not form.email.vars.valid %}
+                                        {% for error in form.email.vars.errors %}
+                                            <span class="help-block">{{ error.message }}</span>
+                                        {% endfor %}
+                                    {% endif%}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mot de passe -->
+
+                        <!-- Ceci pour que le champ devienne en rouge si le contenu est faux -->
+                        {% set class='' %}
+                        {% if not form.plainPassword.first.vars.valid %}
+                            {% set class="has-error" %}
+                        {% endif %}
+                        <!--/erreur-->
+                        <div class="box-body">
+                            <div class="form-group {{class}} row">
+                                <label class="control-label" for="{{form.plainPassword.first.vars.id}}">Mot de passe</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="{{form.plainPassword.first.vars.id}}" name="{{ form.plainPassword.first.vars.full_name}}" value="{{ form.plainPassword.first.vars.value}}" placeholder="Entrer votre mot de passe" required>
+                                     <span class="input-group-addon">
+                                         <i class="glyphicon glyphicon-lock"></i>
+                                     </span>
+                                    {% do form.plainPassword.first.setRendered %}
+                                    {% if not form.plainPassword.first.vars.valid %}
+                                        {% for error in form.plainPassword.first.vars.errors %}
+                                            <span class="help-block">{{ error.message }}</span>
+                                        {% endfor %}
+                                    {% endif%}
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Mot de passe -->
+                        <!--/Répéter Mot de passe -->
+                        <!-- Ceci pour que le champ devienne en rouge si le contenu est faux -->
+                        {% set class='' %}
+                        {% if not form.plainPassword.second.vars.valid %}
+                            {% set class="has-error" %}
+                        {% endif %}
+                        <!--/erreur-->
+                        <div class="box-body">
+                            <div class="form-group {{class}} row">
+                                <label class="control-label" for="{{form.plainPassword.second.vars.id}}">Mot de passe</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="{{form.plainPassword.second.vars.id}}" name="{{ form.plainPassword.second.vars.full_name}}" value="{{ form.plainPassword.second.vars.value}}" placeholder="Répéter votre mot de passe" required>
+                                    <span class="input-group-addon">
+                                         <i class="glyphicon glyphicon-lock"></i>
+                                     </span>
+                                    {% do form.plainPassword.second.setRendered %}
+                                    {% if not form.plainPassword.second.vars.valid %}
+                                        {% for error in form.plainPassword.second.vars.errors %}
+                                            <span class="help-block">{{ error.message }}</span>
+                                        {% endfor %}
+                                    {% endif%}
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Répéter Mot de passe -->
+
+
+                        <div class="form-group sign-btn row">
+                            <input class="btn" type="submit" value="{{ 'registration.submit'|trans }}" />
+                        </div>
                     </div>
-            <div class="box-body">
-                <div class="form-group">
-                    {{ form_row(form.email, {'attr':{'class':'form-control '}}) }}</span>
                 </div>
             </div>
-            <div class="box-body">
-                <div class="form-group">
-                    {{ form_row(form.plainPassword.first, {'attr':{'class':'form-control'}}) }}
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="form-group">
-                    {{ form_row(form.plainPassword.second, {'attr':{'class':'form-control'}}) }}
-                </div>
-            </div>
-            <br>
-           <div class="form-group sign-btn">
-                <input class="btn" type="submit" value="{{ 'registration.submit'|trans }}" />
-            </div>
-
         </div>
-    </div>
-    </div>
 
-{{ form_end(form) }}
-</div>
+        {{ form_end(form) }}
     </div>
+</div>
+
