@@ -6,10 +6,9 @@ admin_formation_homepage:
     path:     /
     defaults: { _controller: AdminFormationBundle:Default:index }
 
-admin_formation_new:
-    path:     /new-service
-    defaults: { _controller: AdminFormationBundle:Service:new }
-
+admin_formation_service:
+        resource: "@AdminFormationBundle/Resources/config/routing/service.yml"
+        prefix:   /service
 admin_formation_sous_service:
         resource: "@AdminFormationBundle/Resources/config/routing/sous_service.yml"
         prefix:   /sous_service
@@ -20,3 +19,7 @@ admin_formation_formateur:
 admin_formation_formation:
         resource: "@AdminFormationBundle/Resources/config/routing/formation.yml"
         prefix:   /formation
+admin_formation_evenement:
+        resource: "@AdminFormationBundle/Resources/config/routing/evenement.yml"
+        prefix:   /evenement
+

@@ -59,17 +59,8 @@
                 </table>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer clearfix">
-                <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="{{ path('service_index') }}">&laquo;</a></li>
-                    <li><a href="{{ path('service_index') }}">1</a></li>
-                    <li><a href="{{ path('service_index') }}">2</a></li>
-                    <li><a href="{{ path('service_index') }}">3</a></li>
-                    <li><a href="{{ path('service_index') }}">&raquo;</a></li>
-                </ul>
-            </div>
+            <div class="box-footer clearfix">{{ knp_pagination_render(services) }}</div>
         </div>
         </div>
         <!-- /.box -->
 {% endblock %}
-

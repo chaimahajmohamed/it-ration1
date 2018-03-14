@@ -38,14 +38,14 @@ class sous_Service
      */
     private $descriptionSous;
     /**
-     * @ORM\ManyToOne(targetEntity="Service" ,cascade={"remove"})
-     * @ORM\JoinColumn(name="id_service",referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumn(name="id_service",referencedColumnName="id",onDelete="CASCADE")
      * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $service;
 
     /**
-     * @return mixed
+     * @return Service
      */
     public function getService()
     {
@@ -53,9 +53,9 @@ class sous_Service
     }
 
     /**
-     * @param mixed $service
+     * @param Service $service
      */
-    public function setService($service)
+    public function setService(Service $service)
     {
         $this->service = $service;
     }

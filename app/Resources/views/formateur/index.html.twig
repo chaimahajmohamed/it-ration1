@@ -46,7 +46,6 @@
                     <th>Cv</th>
                     <th class="text-center"><em class="glyphicon glyphicon-cog"></em></th>
                 </tr>
-                <tr>
                     {% for formateur in formateurs %}
                 <tr class="ok">
                     <td><img src="{{ asset('/images/')}}{{formateur.photoformateur}}" style="width: 100px;height: 100px"></td>
@@ -61,7 +60,25 @@
                     <td class="text-center">
                         <a  class='btn btn-info btn-sm' href="{{ path('formateur_show', { 'id': formateur.id })  }}"><span class="glyphicon glyphicon-eye-open"></span> Afficher</a>
                         <a class='btn btn-warning btn-sm' href="{{ path('formateur_edit', { 'id': formateur.id }) }}"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
-                        <a class='btn btn-danger btn-sm' href="{{ path('formateur_delete', { 'id': formateur.id }) }}"><span class="glyphicon glyphicon-remove"></span> Supprimer</a>
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <p><h3 style="color:#808080">Etes-vous sûr que vous voulez Supprimer {{ formateur.nomFormateur }} {{ formateur.prenomFormateur }}</h3></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class='btn btn-danger btn-sm' href="{{ path('formateur_delete', { 'id': formateur.id }) }}">Supprimer</a>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
 
                     </td>
                 </tr>
@@ -69,15 +86,8 @@
             </table>
         </div>
         <!-- /.box-body -->
-        <div class="box-footer clearfix">
-            <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="{{ path('formateur_index') }}">&laquo;</a></li>
-                <li><a href="{{ path('formateur_index') }}">1</a></li>
-                <li><a href="{{ path('formateur_index') }}">2</a></li>
-                <li><a href="{{ path('formateur_index') }}">3</a></li>
-                <li><a href="{{ path('formateur_index') }}">&raquo;</a></li>
-            </ul>
-        </div>
+        <div class="box-footer clearfix">{{ knp_pagination_render(formateurs) }}</div>
     </div>
     <!-- /.box -->
+
 {% endblock %}

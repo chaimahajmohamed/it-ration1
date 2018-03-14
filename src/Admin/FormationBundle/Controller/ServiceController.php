@@ -16,12 +16,15 @@ class ServiceController extends Controller
      * Lists all service entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $services = $em->getRepository('AdminFormationBundle:Service')->findAll();
-
+        $services = $this->get('knp_paginator')->paginate(
+            $services,
+            $request->query->get('page', 1)/*le numéro de la page à afficher*/,
+            4/*nbre d'éléments par page*/);
         return $this->render('service/index.html.twig', array(
             'services' => $services,
         ));

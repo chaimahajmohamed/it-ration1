@@ -16,12 +16,15 @@ class sous_ServiceController extends Controller
      * Lists all sous_Service entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $sous_Services = $em->getRepository('AdminFormationBundle:sous_Service')->findAll();
-
+        $sous_Services = $this->get('knp_paginator')->paginate(
+            $sous_Services,
+            $request->query->get('page', 1)/*le numéro de la page à afficher*/,
+            4/*nbre d'éléments par page*/);
         return $this->render('sous_service/index.html.twig', array(
             'sous_Services' => $sous_Services,
         ));

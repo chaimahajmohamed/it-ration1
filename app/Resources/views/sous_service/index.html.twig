@@ -41,9 +41,9 @@
                     <tr>
                         <th>Titre</th>
                         <th>Description</th>
+
                         <th class="text-center"><em class="glyphicon glyphicon-cog"></em></th>
                     </tr>
-                    <tr>
                         {% for sous_Service in sous_Services %}
                     <tr class="ok">
                         <td class="col-sm-4"> {{ sous_Service.libelleSous }}</td>
@@ -59,15 +59,7 @@
                 </table>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer clearfix">
-                <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="{{ path('sous_service_index') }}">&laquo;</a></li>
-                    <li><a href="{{ path('sous_service_index') }}">1</a></li>
-                    <li><a href="{{ path('sous_service_index') }}">2</a></li>
-                    <li><a href="{{ path('sous_service_index') }}">3</a></li>
-                    <li><a href="{{ path('sous_service_index') }}">&raquo;</a></li>
-                </ul>
-            </div>
+            <div class="box-footer clearfix">{{ knp_pagination_render(sous_Services) }}</div>
         </div>
     </div>
     <!-- /.box -->

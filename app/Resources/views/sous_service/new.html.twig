@@ -1,5 +1,4 @@
 {% extends "user/layoutadmin.html.twig" %}
-
 {% block fos_user_content %}
 {% block stylesheet %}
         <link rel="stylesheet" href="{{ asset('template/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -23,18 +22,18 @@
             <!-- le champ titre-->
 
             {% set class='' %}
-            {% if not form.libellesous.vars.valid %}
+            {% if not form.libelleSous.vars.valid %}
                 {% set class="has-error" %}
             {% endif %}
 
             <div class="form-group {{class}} row" >
                 <div class="col-sm-10">
-                    <label class="control-label" for="{{form.libellesous.vars.id}}">Titre</label>
-                    <input type="text" class="form-control" id="{{form.libellesous.vars.id}}" name="{{ form.libellesous.vars.full_name}}" value="{{ form.libellesous.vars.value}}" placeholder="Entrer le titre">
+                    <label class="control-label" for="{{form.libelleSous.vars.id}}">Titre</label>
+                    <input type="text" class="form-control" id="{{form.libelleSous.vars.id}}" name="{{ form.libelleSous.vars.full_name}}" value="{{ form.libelleSous.vars.value}}" placeholder="Entrer le titre">
 
-                    {% do form.libellesous.setRendered %}
-                    {% if not form.libellesous.vars.valid %}
-                        {% for error in form.libellesous.vars.errors %}
+                    {% do form.libelleSous.setRendered %}
+                    {% if not form.libelleSous.vars.valid %}
+                        {% for error in form.libelleSous.vars.errors %}
                             <span class="help-block">{{ error.message }}</span>
                         {% endfor %}
                     {% endif%}
@@ -42,18 +41,18 @@
             </div>
             <!-- le champ description -->
             {% set class='' %}
-            {% if not form.descriptionsous.vars.valid %}
+            {% if not form.descriptionSous.vars.valid %}
                 {% set class="has-error" %}
             {% endif %}
 
             <div class="form-group {{class}} row" >
                 <div class="col-sm-10">
-                    <label class="control-label" for="{{form.descriptionsous.vars.id}}">Description</label>
-                    <textarea type="text" rows="4" class="form-control" id="{{form.descriptionsous.vars.id}}" name="{{ form.descriptionsous.vars.full_name}}" placeholder="Entrer la description"></textarea>
+                    <label class="control-label" for="{{form.descriptionSous.vars.id}}">Description</label>
+                    <textarea type="text" rows="4" class="form-control" id="{{form.descriptionSous.vars.id}}" name="{{ form.descriptionSous.vars.full_name}}" placeholder="Entrer la description"></textarea>
 
-                    {% do form.descriptionsous.setRendered %}
-                    {% if not form.descriptionsous.vars.valid %}
-                        {% for error in form.descriptionsous.vars.errors %}
+                    {% do form.descriptionSous.setRendered %}
+                    {% if not form.descriptionSous.vars.valid %}
+                        {% for error in form.descriptionSous.vars.errors %}
                             <span class="help-block">{{ error.message }}</span>
                         {% endfor %}
                     {% endif%}
@@ -61,7 +60,7 @@
             </div>
             <!-- le champ service -->
             {% set class='' %}
-            {% if not form.descriptionsous.vars.valid %}
+            {% if not form.service.vars.valid %}
                 {% set class="has-error" %}
             {% endif %}
 
@@ -88,5 +87,5 @@
 
         </div>
     </div>
-
+</div>
 {% endblock %}

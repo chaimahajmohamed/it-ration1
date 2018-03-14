@@ -22,7 +22,7 @@ class FormateurType extends AbstractType
                 ->add('fbFormateur')
                 ->add('linkFormateur')
                 ->add('file')
-                ->add('cvformateur',FileType::class, array('label' => 'CV (PDF file)'));
+               ->add('cvformateur',FileType::class, array('label' => 'CV (PDF file)','data_class' => null));
 
     }/**
      * {@inheritdoc}

@@ -1,0 +1,84 @@
+{% extends "user/layoutadmin.html.twig" %}
+{% block fos_user_content %}
+    {% block stylesheet %}
+        <!------ Include the above in your HEAD tag ---------->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/font-awesome/css/font-awesome.min.css')}}">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="{{ asset('template/bower_components/Ionicons/css/ionicons.min.css')}}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('template/dist/css/AdminLTE.min.css')}}">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="{{ asset('template/dist/css/skins/_all-skins.min.css')}}">
+    {% endblock %}
+    <div class="text-center">
+        <a class='btn btn-primary btn-md center' href="{{ path('evenement_new') }}"><span class="glyphicon glyphicon-plus"></span> Créer Evénement</a>
+    </div><br/>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Les évènements</h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Rechercher">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <thead>
+                    <th>Photo</th>
+                    <th>Nom</th>
+                    <th>Date début</th>
+                    <th>Date fin</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      {% for evenement in evenements %}
+                    <tr>
+                       <td><img src="{{asset('evenements/')}}{{ evenement.file}}" style="width: 100px;height: 100px"></td>
+                       <td>{{ evenement.nomEvenement }}</td>
+                       <td>{% if evenement.datedebut %}{{ evenement.datedebut|date('Y-m-d') }}{% endif %}</td>
+                       <td>{% if evenement.datefin %}{{ evenement.datefin|date('Y-m-d') }}{% endif %}</td>
+                       <td>{{ evenement.prix }}</td>
+                       <td class="text-center">
+                         <a  class='btn btn-info btn-sm' href="{{ path('evenement_show', { 'id': evenement.id }) }}"><span class="glyphicon glyphicon-eye-open"></span> Afficher</a>
+                         <a class='btn btn-warning btn-sm' href="{{ path('evenement_edit', { 'id': evenement.id }) }}"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
+                         <!-- Trigger the modal with a button -->
+                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
+                           <div class="modal fade" id="myModal" role="dialog">
+                               <div class="modal-dialog">
+
+                                   <!-- Modal content-->
+                                   <div class="modal-content">
+                                       <div class="modal-body">
+                                           <p><h3 style="color:#808080">Etes-vous sûr que vous voulez Supprimer {{ evenement.nomevenement }}</h3></p>
+                                       </div>
+                                       <div class="modal-footer">
+                                           <a class='btn btn-danger btn-sm' href="{{ path('evenement_delete', { 'id': evenement.id }) }}">Supprimer</a>
+                                           <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+
+                       </td>
+                    </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

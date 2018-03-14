@@ -21,4 +21,4 @@ formateur_edit:
 formateur_delete:
     path:     /{id}/delete
     defaults: { _controller: "AdminFormationBundle:Formateur:delete" }
-    methods:  DELETE
+    methods:  [GET, POST]

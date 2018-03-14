@@ -16,12 +16,16 @@ class FormateurController extends Controller
      * Lists all formateur entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $formateurs = $em->getRepository('AdminFormationBundle:Formateur')->findAll();
-
+        $formateurs = $this->get('knp_paginator')->paginate(
+            $formateurs,
+            $request->query->get('page', 1)/*le numéro de la page à afficher*/,
+            4/*nbre d'éléments par page*/
+        );
         return $this->render('formateur/index.html.twig', array(
             'formateurs' => $formateurs,
         ));

@@ -15,8 +15,8 @@ class sous_ServiceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('libellesous',textType::class,array('required' => true))
-                ->add('descriptionsous',TextareaType::class,array('required' => true))
+        $builder->add('libelleSous',textType::class,array('required' => true))
+                ->add('descriptionSous',TextareaType::class,array('required' => true))
                 ->add('service',EntityType::class,array('class'=>'AdminFormationBundle:Service','choice_label'=>'libelleService','multiple'=>false,));
     }/**
      * {@inheritdoc}
